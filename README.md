@@ -25,10 +25,22 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 yarn
 ```
 
+atau
+
+```sh
+npm install
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
 yarn dev
+```
+
+atau
+
+```sh
+npm run dev
 ```
 
 ### Compile and Minify for Production
@@ -37,8 +49,27 @@ yarn dev
 yarn build
 ```
 
+atau
+
+```sh
+npm run build
+```
+
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
 yarn lint
+```
+
+atau
+Lint with [ESLint](https://eslint.org/)
+
+```sh
+yarn lint
+```
+
+atau
+
+```sh
+npm run lint
 ```
