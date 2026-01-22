@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 md:grid-cols-4">
       <!-- FUTURE STUDENTS -->
       <div class="relative bg-[url(/images/image1.jpeg)] bg-cover flex flex-col justify-between min-h-[300px]">
-        <div class="bg-blue-900/70 text-white p-8">
+        <div class="bg-blue-900/70 text-white p-9">
 <div>
           <div class="flex justify-center text-4xl mb-4">🐺</div>
           <h3 class="text-xl text-center font-bold mb-4">FUTURE STUDENTS</h3>
@@ -23,7 +23,7 @@
 
       <!-- ACADEMIC PROGRAMS -->
       <div class="relative bg-[url(/images/image2.jpeg)] bg-cover flex flex-col justify-between min-h-[300px]">
-       <div class="bg-sky-900/70 text-white p-8">
+       <div class="bg-sky-900/70 text-white p-9">
         <div>
           <div class="text-4xl mb-4">💡</div>
           <h3 class="text-xl text-center font-bold mb-4">ACADEMIC PROGRAMS</h3>
@@ -41,7 +41,7 @@
 
       <!-- CALENDARS & KEY DATES -->
       <div class="relative bg-[url(/images/image3.jpeg)] bg-cover flex flex-col justify-between min-h-[300px]">
-        <div class="bg-cyan-900/70 text-white p-8">
+        <div class="bg-cyan-900/70 text-white p-9">
         <div>
           <div class="text-4xl mb-4">📣</div>
           <h3 class="text-xl text-center font-bold mb-4">CALENDARS & KEY DATES</h3>
@@ -59,7 +59,7 @@
 
       <!-- VIRTUAL CAMPUS TOURS -->
       <div class="relative bg-[url(/images/image4.jpeg)] bg-cover flex flex-col justify-between min-h-[300px]">
-        <div class="bg-teal-900/70 text-white p-8">
+        <div class="bg-teal-900/70 text-white p-10">
         <div>
           <div class="text-4xl mb-4">📍</div>
           <h3 class="text-xl text-center font-bold mb-4">VIRTUAL CAMPUS TOURS</h3>
