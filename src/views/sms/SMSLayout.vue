@@ -1,0 +1,243 @@
+<template>
+  <div class="relative min-h-screen overflow-hidden bg-[#0f172a] text-white">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1800&q=80')"
+    ></div>
+    <div class="absolute inset-0 bg-linear-to-br from-[#0f172a]/95 via-[#0f172a]/75 to-[#1f4a8a]/70"></div>
+    <div class="absolute inset-0">
+      <div class="absolute -left-32 top-10 h-80 w-80 rounded-full bg-[#facc15]/15 blur-3xl"></div>
+      <div class="absolute right-0 top-24 h-96 w-96 rounded-full bg-[#38bdf8]/15 blur-3xl"></div>
+      <div class="absolute bottom-0 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-[#f97316]/15 blur-3xl"></div>
+    </div>
+
+    <div class="fixed inset-0 z-10 flex flex-col">
+      <header class="fixed left-0 right-0 top-0 z-40 flex h-16 items-center justify-between gap-4 border-b border-white/10 bg-white/10 px-6 text-white/80 shadow-sm backdrop-blur">
+        <div class="flex items-center gap-3">
+          <button
+            class="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg bg-[#facc15]/90 text-[#0f172a]"
+            type="button"
+            @click="toggleDrawer"
+          >
+            ☰
+          </button>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">Welcome to</p>
+            <h1 class="text-base font-semibold text-white">Akkhor School Management System</h1>
+          </div>
+        </div>
+        <div class="flex flex-1 items-center justify-center">
+          <div class="flex w-full max-w-xl items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-white/70 backdrop-blur">
+            <span class="text-white/70">🔍</span>
+            <input
+              type="text"
+              placeholder="Search here..."
+              class="w-full bg-transparent text-sm text-white placeholder:text-white/50 focus:outline-none"
+            />
+          </div>
+        </div>
+        <div class="flex items-center gap-4 text-sm text-white/70">
+          <div class="flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1">
+            🌐 <span>English</span>
+          </div>
+          <div class="relative">
+            <span class="text-lg">🔔</span>
+            <span class="absolute -right-1 -top-1 rounded-full bg-red-500 px-1.5 text-[10px] text-white">8</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="h-8 w-8 rounded-full bg-white/20"></div>
+            <div class="leading-tight">
+              <p class="text-xs font-semibold text-white">Kazi Fahim</p>
+              <p class="text-[10px] text-white/50">Admin</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="flex h-full pt-16">
+        <aside
+          class="flex h-[calc(100vh-4rem)] flex-col border-r border-white/10 bg-white/10 text-white backdrop-blur transition-all duration-300"
+          :class="isDrawerCollapsed ? 'w-20' : 'w-64'"
+        >
+          <div
+            class="border-b border-white/10 px-6 py-5"
+            :class="isDrawerCollapsed ? 'flex items-center justify-center px-4' : ''"
+          >
+            <div class="text-lg font-bold tracking-wide text-white" :class="isDrawerCollapsed ? 'sr-only' : ''">
+              Akkhor
+            </div>
+            <p class="text-xs text-white/60" :class="isDrawerCollapsed ? 'sr-only' : ''">
+              School Management
+            </p>
+            <div
+              v-if="isDrawerCollapsed"
+              class="flex h-10 w-10 items-center justify-center rounded-lg bg-white/15 text-white"
+            >
+              <font-awesome-icon :icon="['fas', 'school']" class="text-sm" />
+            </div>
+          </div>
+          <nav
+            class="sms-scroll flex-1 overflow-y-auto py-6 text-sm"
+            :class="isDrawerCollapsed ? 'px-3' : 'px-4'"
+          >
+            <p
+              class="px-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50"
+              :class="isDrawerCollapsed ? 'opacity-0' : 'opacity-100'"
+            >
+              Main
+            </p>
+            <ul class="mt-3 space-y-1">
+              <li
+                class="flex cursor-pointer items-center rounded-lg bg-white/15 px-3 py-2 text-white"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'gauge-high']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Dashboard</span>
+              </li>
+              <li
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'user-shield']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Admin</span>
+              </li>
+              <router-link
+                to="/sms/students"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'user-graduate']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Student</span>
+              </router-link>
+              <li
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'users']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Parents</span>
+              </li>
+            </ul>
+
+            <p
+              class="mt-6 px-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50"
+              :class="isDrawerCollapsed ? 'opacity-0' : 'opacity-100'"
+            >
+              Academics
+            </p>
+            <ul class="mt-3 space-y-1">
+              <li
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'chalkboard-user']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Teachers</span>
+              </li>
+              <li
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'book-open']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Library</span>
+              </li>
+              <li
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'school']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Class</span>
+              </li>
+              <li
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'book']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Subject</span>
+              </li>
+              <li
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'clipboard-check']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Attendance</span>
+              </li>
+            </ul>
+
+            <p
+              class="mt-6 px-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/50"
+              :class="isDrawerCollapsed ? 'opacity-0' : 'opacity-100'"
+            >
+              Others
+            </p>
+            <ul class="mt-3 space-y-1">
+              <li
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'file-lines']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Exam</span>
+              </li>
+              <li
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'bus']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Transport</span>
+              </li>
+              <li
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'bed']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Hostel</span>
+              </li>
+              <li
+                class="flex items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'bell']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Notice</span>
+              </li>
+              <li
+                class="flex items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'envelope']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Message</span>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <main class="sms-scroll h-[calc(100vh-4rem)] flex-1 overflow-y-auto px-6 py-6 text-slate-800">
+          <router-view />
+        </main>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+const isDrawerCollapsed = ref(false)
+
+const toggleDrawer = () => {
+  isDrawerCollapsed.value = !isDrawerCollapsed.value
+}
+
+let mediaQuery
+const handleResize = (event) => {
+  isDrawerCollapsed.value = event.matches
+}
+
+onMounted(() => {
+  mediaQuery = window.matchMedia('(max-width: 768px)')
+  isDrawerCollapsed.value = mediaQuery.matches
+  mediaQuery.addEventListener('change', handleResize)
+})
+
+onBeforeUnmount(() => {
+  if (!mediaQuery) return
+  mediaQuery.removeEventListener('change', handleResize)
+})
+</script>
