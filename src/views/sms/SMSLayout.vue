@@ -125,13 +125,14 @@
               Academics
             </p>
             <ul class="mt-3 space-y-1">
-              <li
+              <router-link
+                to="/sms/teachers"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
               >
                 <font-awesome-icon :icon="['fas', 'chalkboard-user']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Teachers</span>
-              </li>
+              </router-link>
               <li
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"

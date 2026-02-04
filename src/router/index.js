@@ -28,6 +28,11 @@ const router = createRouter({
           name: 'sms-all-students',
           component: () => import('../views/sms/pages/AllStudentsPage.vue'),
         },
+        {
+          path: 'teachers',
+          name: 'sms-all-teachers',
+          component: () => import('../views/sms/pages/TeacherPage.vue'),
+        },
       ],
     },
   ],
