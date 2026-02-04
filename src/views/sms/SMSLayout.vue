@@ -109,13 +109,14 @@
                 <font-awesome-icon :icon="['fas', 'user-graduate']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Student</span>
               </router-link>
-              <li
+              <router-link
+                to="/sms/parents"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
               >
                 <font-awesome-icon :icon="['fas', 'users']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Parents</span>
-              </li>
+              </router-link>
             </ul>
 
             <p
@@ -154,14 +155,23 @@
               >
                 <font-awesome-icon :icon="['fas', 'book']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Subject</span>
-              </li>
-              <li
+              </router-link>
+              <router-link
+                to="/sms/class-routine"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              >
+                <font-awesome-icon :icon="['fas', 'clipboard-check']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Class Routine</span>
+              </router-link>
+              <router-link
+                to="/sms/attendance"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
               >
                 <font-awesome-icon :icon="['fas', 'clipboard-check']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Attendance</span>
-              </li>
+              </router-link>
             </ul>
 
             <p

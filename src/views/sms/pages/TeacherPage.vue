@@ -13,6 +13,12 @@
           <p class="text-xs text-slate-400">Manage and review teacher information</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
+          <button
+            class="h-9 cursor-pointer rounded-full bg-amber-400 px-4 text-xs font-semibold uppercase tracking-wide text-white"
+            @click="isAddOpen = true"
+          >
+            Add Teacher
+          </button>
           <input
             v-model="idQuery"
             type="text"
@@ -80,7 +86,14 @@
                   <img :src="teacher.photo" :alt="teacher.name" class="h-full w-full object-cover" />
                 </div>
               </td>
-              <td class="px-4 py-3 font-medium text-slate-700">{{ teacher.name }}</td>
+              <td class="px-4 py-3 font-medium text-slate-700">
+                <button
+                  class="text-left text-slate-700 hover:text-[#1e3a8a]"
+                  @click="openDetail(teacher)"
+                >
+                  {{ teacher.name }}
+                </button>
+              </td>
               <td class="px-4 py-3">{{ teacher.gender }}</td>
               <td class="px-4 py-3">{{ teacher.subject }}</td>
               <td class="px-4 py-3">{{ teacher.className }}</td>
@@ -91,7 +104,12 @@
               <td class="px-4 py-3">{{ teacher.email }}</td>
               <td class="px-4 py-3">
                 <div class="flex items-center justify-center gap-2">
-                  <button class="h-7 w-7 cursor-pointer rounded-full bg-slate-100 text-slate-600">👁</button>
+                  <button
+                    class="h-7 w-7 cursor-pointer rounded-full bg-slate-100 text-slate-600"
+                    @click="openDetail(teacher)"
+                  >
+                    👁
+                  </button>
                   <button class="h-7 w-7 cursor-pointer rounded-full bg-emerald-50 text-emerald-600">✎</button>
                   <button class="h-7 w-7 cursor-pointer rounded-full bg-rose-50 text-rose-600">🗑</button>
                 </div>
@@ -142,11 +160,16 @@
         </div>
       </div>
     </section>
+
+    <TeacherDetailComponent v-model="isDetailOpen" :teacher="selectedTeacher" />
+    <AddNewTeacherComponent v-model="isAddOpen" />
   </div>
 </template>
 
 <script setup>
 import { computed, ref, watch } from 'vue'
+import TeacherDetailComponent from '../components/TeacherDetailComponent.vue'
+import AddNewTeacherComponent from '../components/AddNewTeacherComponent.vue'
 
 const perPageOptions = [5, 10, 20]
 const perPage = ref(10)
@@ -154,6 +177,14 @@ const currentPage = ref(1)
 const idQuery = ref('')
 const classQuery = ref('')
 const subjectQuery = ref('')
+const isDetailOpen = ref(false)
+const selectedTeacher = ref(null)
+const isAddOpen = ref(false)
+
+const openDetail = (teacher) => {
+  selectedTeacher.value = teacher
+  isDetailOpen.value = true
+}
 
 const teachers = [
   {

@@ -33,26 +33,6 @@ const router = createRouter({
           name: 'sms-all-teachers',
           component: () => import('../views/sms/pages/TeacherPage.vue'),
         },
-        {
-          path: 'exam',
-          name: 'sms-exam',
-          component: () => import('../views/sms/pages/ExamPage.vue'),
-        },
-        {
-          path: 'exam-grades',
-          name: 'sms-exam-grades',
-          component: () => import('../views/sms/pages/ExamGradesPage.vue'),
-        },
-        {
-          path: 'notice',
-          name: 'sms-notice',
-          component: () => import('../views/sms/pages/NoticePage.vue'),
-        },
-        {
-          path: 'send-message',
-          name: 'sms-send-message',
-          component: () => import('../views/sms/pages/SendMessagePage.vue'),
-        },
       ],
     },
   ],
