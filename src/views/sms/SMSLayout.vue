@@ -140,13 +140,14 @@
                 <font-awesome-icon :icon="['fas', 'book-open']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Library</span>
               </li>
-              <li
+              <router-link
+                to="/sms/send-message"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
               >
                 <font-awesome-icon :icon="['fas', 'school']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Class</span>
-              </li>
+              </router-link>
               <li
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
@@ -170,13 +171,14 @@
               Others
             </p>
             <ul class="mt-3 space-y-1">
-              <li
+              <router-link
+                to="/sms/exam"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
               >
                 <font-awesome-icon :icon="['fas', 'file-lines']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Exam</span>
-              </li>
+              </router-link>
               <li
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
@@ -191,20 +193,22 @@
                 <font-awesome-icon :icon="['fas', 'bed']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Hostel</span>
               </li>
-              <li
+              <router-link
+                to="/sms/notice"
                 class="flex items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
               >
                 <font-awesome-icon :icon="['fas', 'bell']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Notice</span>
-              </li>
-              <li
+              </router-link>
+              <router-link
+                to="/sms/send-message"
                 class="flex items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
               >
                 <font-awesome-icon :icon="['fas', 'envelope']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Message</span>
-              </li>
+              </router-link>
             </ul>
           </nav>
         </aside>
