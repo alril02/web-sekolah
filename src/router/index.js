@@ -33,6 +33,31 @@ const router = createRouter({
           name: 'sms-all-teachers',
           component: () => import('../views/sms/pages/TeacherPage.vue'),
         },
+        {
+          path: 'parents',
+          name: 'sms-all-parents',
+          component: () => import('../views/sms/pages/AllParentsPage.vue'),
+        },
+        {
+          path: 'classes',
+          name: 'sms-all-classes',
+          component: () => import('../views/sms/pages/AllClassPage.vue'),
+        },
+        {
+          path: 'subjects',
+          name: 'sms-subjects',
+          component: () => import('../views/sms/pages/SubjectPage.vue'),
+        },
+        {
+          path: 'class-routine',
+          name: 'sms-class-routine',
+          component: () => import('../views/sms/pages/ClassRoutinePage.vue'),
+        },
+        {
+          path: 'attendance',
+          name: 'sms-attendance',
+          component: () => import('../views/sms/pages/AttendancePage.vue'),
+        },
       ],
     },
   ],
