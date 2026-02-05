@@ -12,13 +12,14 @@
           <h2 class="text-lg font-semibold text-slate-800">All Teachers</h2>
           <p class="text-xs text-slate-400">Manage and review teacher information</p>
         </div>
+        <button
+          class="flex h-9 cursor-pointer items-center gap-2 rounded-full bg-amber-400 px-4 text-xs font-semibold uppercase tracking-wide text-white"
+          @click="isAddOpen = true"
+        >
+          <span class="text-sm font-bold">+</span>
+          Add Teacher
+        </button>
         <div class="flex flex-wrap items-center gap-2">
-          <button
-            class="h-9 cursor-pointer rounded-full bg-amber-400 px-4 text-xs font-semibold uppercase tracking-wide text-white"
-            @click="isAddOpen = true"
-          >
-            Add Teacher
-          </button>
           <input
             v-model="idQuery"
             type="text"

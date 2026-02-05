@@ -66,9 +66,13 @@
             <div class="text-lg font-bold tracking-wide text-white" :class="isDrawerCollapsed ? 'sr-only' : ''">
               Akkhor
             </div>
-            <p class="text-xs text-white/60" :class="isDrawerCollapsed ? 'sr-only' : ''">
-              School Management
-            </p>
+            <router-link
+              to="/sms/profile"
+              class="text-xs text-white/60 hover:text-white"
+              :class="isDrawerCollapsed ? 'sr-only' : ''"
+            >
+              Profile
+            </router-link>
             <div
               v-if="isDrawerCollapsed"
               class="flex h-10 w-10 items-center justify-center rounded-lg bg-white/15 text-white"
@@ -261,17 +265,6 @@
                 </ul>
               </li>
               <router-link
-                to="/sms/class"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
-                :class="[
-                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
-                  isLinkActive('/sms/class') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
-                ]"
-              >
-                <font-awesome-icon :icon="['fas', 'school']" class="text-xs" />
-                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Class</span>
-              </router-link>
-              <router-link
                 to="/sms/subject"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2"
                 :class="[
@@ -381,19 +374,7 @@ const route = useRoute()
 const isAccountOpen = ref(false)
 const isLibraryOpen = ref(false)
 
-const isLinkActive = (path) => {
-  if (isAccountOpen.value && !path.startsWith('/sms/account')) return false
-  if (isLibraryOpen.value && !path.startsWith('/sms/library')) return false
-  return route.path === path
-}
-
-const toggleAccount = () => {
-  isAccountOpen.value = !isAccountOpen.value
-}
-
-const toggleLibrary = () => {
-  isLibraryOpen.value = !isLibraryOpen.value
-}
+const isLinkActive = (path) => route.path === path
 
 const toggleDrawer = () => {
   isDrawerCollapsed.value = !isDrawerCollapsed.value
