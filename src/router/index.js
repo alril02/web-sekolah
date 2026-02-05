@@ -29,9 +29,34 @@ const router = createRouter({
           component: () => import('../views/sms/pages/AllStudentsPage.vue'),
         },
         {
+          path: 'parents',
+          name: 'sms-all-parents',
+          component: () => import('../views/sms/pages/AllParentsPage.vue'),
+        },
+        {
           path: 'teachers',
           name: 'sms-all-teachers',
           component: () => import('../views/sms/pages/TeacherPage.vue'),
+        },
+        {
+          path: 'class',
+          name: 'sms-class',
+          component: () => import('../views/sms/pages/AllClassPage.vue'),
+        },
+        {
+          path: 'subject',
+          name: 'sms-subject',
+          component: () => import('../views/sms/pages/SubjectPage.vue'),
+        },
+        {
+          path: 'attendance',
+          name: 'sms-attendance',
+          component: () => import('../views/sms/pages/AttendancePage.vue'),
+        },
+        {
+          path: 'classroutine',
+          name: 'sms-classroutine',
+          component: () => import('../views/sms/pages/ClassRoutinePage.vue'),
         },
         {
           path: 'exam',

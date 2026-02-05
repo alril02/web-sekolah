@@ -87,13 +87,17 @@
               Main
             </p>
             <ul class="mt-3 space-y-1">
-              <li
-                class="flex cursor-pointer items-center rounded-lg bg-white/15 px-3 py-2 text-white"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              <router-link
+                to="/sms"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'gauge-high']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Dashboard</span>
-              </li>
+              </router-link>
               <li
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
@@ -103,16 +107,22 @@
               </li>
               <router-link
                 to="/sms/students"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/students') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'user-graduate']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Student</span>
               </router-link>
               <router-link
                 to="/sms/parents"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/parents') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'users']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Parents</span>
@@ -128,8 +138,11 @@
             <ul class="mt-3 space-y-1">
               <router-link
                 to="/sms/teachers"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/teachers') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'chalkboard-user']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Teachers</span>
@@ -142,32 +155,45 @@
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Library</span>
               </li>
               <router-link
-                to="/sms/send-message"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+                to="/sms/class"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/class') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'school']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Class</span>
               </router-link>
-              <li
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+              <router-link
+                to="/sms/subject"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/subject') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'book']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Subject</span>
               </router-link>
               <router-link
-                to="/sms/class-routine"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+                to="/sms/classroutine"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/classroutine') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'clipboard-check']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Class Routine</span>
               </router-link>
               <router-link
                 to="/sms/attendance"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/attendance') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'clipboard-check']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Attendance</span>
@@ -183,8 +209,11 @@
             <ul class="mt-3 space-y-1">
               <router-link
                 to="/sms/exam"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/exam') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'file-lines']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Exam</span>
@@ -205,16 +234,22 @@
               </li>
               <router-link
                 to="/sms/notice"
-                class="flex items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+                class="flex items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/notice') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'bell']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Notice</span>
               </router-link>
               <router-link
                 to="/sms/send-message"
-                class="flex items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
+                class="flex items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/send-message') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
               >
                 <font-awesome-icon :icon="['fas', 'envelope']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Message</span>
@@ -233,8 +268,12 @@
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 const isDrawerCollapsed = ref(false)
+const route = useRoute()
+
+const isLinkActive = (path) => route.path === path
 
 const toggleDrawer = () => {
   isDrawerCollapsed.value = !isDrawerCollapsed.value
