@@ -74,7 +74,7 @@
               </div>
             </div>
 
-            <form class="mt-8 space-y-5">
+            <form class="mt-8 space-y-5" @submit.prevent="handleLogin">
               <label class="block text-sm font-medium text-white/80">
                 Email
                 <input
@@ -82,6 +82,7 @@
                   name="email"
                   autocomplete="email"
                   placeholder="nama@email.com"
+                  v-model="email"
                   class="mt-2 w-full rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-[#38bdf8] focus:outline-none focus:ring-2 focus:ring-[#38bdf8]/40"
                 />
               </label>
@@ -93,9 +94,14 @@
                   name="password"
                   autocomplete="current-password"
                   placeholder="••••••••"
+                  v-model="password"
                   class="mt-2 w-full rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-[#38bdf8] focus:outline-none focus:ring-2 focus:ring-[#38bdf8]/40"
                 />
               </label>
+
+              <p v-if="errorMessage" class="rounded-xl border border-rose-400/40 bg-rose-500/10 px-4 py-3 text-xs text-rose-100">
+                {{ errorMessage }}
+              </p>
 
               <div class="flex items-center justify-between text-xs text-white/70">
                 <label class="flex items-center gap-2">
@@ -110,8 +116,9 @@
               <button
                 type="submit"
                 class="w-full rounded-xl bg-[#facc15] px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#0f172a] transition hover:bg-[#fde047]"
+                :disabled="isLoading"
               >
-                Masuk
+                {{ isLoading ? 'Memproses...' : 'Masuk' }}
               </button>
             </form>
 
@@ -153,4 +160,65 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const email = ref('')
+const password = ref('')
+const isLoading = ref(false)
+const errorMessage = ref('')
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
+
+const redirectByRole = (role) => {
+  const normalizedRole = (role || '').toString().toLowerCase()
+  if (normalizedRole === 'administrator') return '/sms'
+  if (normalizedRole === 'guru') return '/guru'
+  if (normalizedRole === 'siswa') return '/siswa'
+  if (normalizedRole === 'orang_tua' || normalizedRole === 'orang tua murid' || normalizedRole === 'ortu') {
+    return '/ortu'
+  }
+  if (normalizedRole === 'pengelola') return '/guru'
+  return '/sms'
+}
+
+const handleLogin = async () => {
+  errorMessage.value = ''
+  isLoading.value = true
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value,
+      }),
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      throw new Error(errorData?.message || 'Login gagal. Cek email dan password.')
+    }
+
+    const data = await response.json()
+    if (data?.accessToken) {
+      localStorage.setItem('accessToken', data.accessToken)
+    }
+    if (data?.user) {
+      localStorage.setItem('user', JSON.stringify(data.user))
+    }
+
+    const nextPath = redirectByRole(data?.user?.role)
+    await router.push(nextPath)
+  } catch (error) {
+    errorMessage.value = error?.message || 'Login gagal. Coba lagi.'
+  } finally {
+    isLoading.value = false
+  }
+}
+</script>

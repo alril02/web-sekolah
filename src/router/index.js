@@ -14,6 +14,21 @@ const router = createRouter({
       component: () => import('../views/login/LoginView.vue'),
     },
     {
+      path: '/guru',
+      name: 'guru',
+      component: () => import('../views/role/GuruView.vue'),
+    },
+    {
+      path: '/siswa',
+      name: 'siswa',
+      component: () => import('../views/role/SiswaView.vue'),
+    },
+    {
+      path: '/ortu',
+      name: 'ortu',
+      component: () => import('../views/role/OrtuView.vue'),
+    },
+    {
       path: '/sms',
       name: 'sms',
       component: () => import('../views/sms/SMSLayout.vue'),
@@ -27,6 +42,11 @@ const router = createRouter({
           path: 'students',
           name: 'sms-all-students',
           component: () => import('../views/sms/pages/AllStudentsPage.vue'),
+        },
+        {
+          path: 'admin',
+          name: 'sms-admin',
+          component: () => import('../views/sms/pages/AdminPage.vue'),
         },
         {
           path: 'parents',

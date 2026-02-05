@@ -97,14 +97,15 @@
                 <font-awesome-icon :icon="['fas', 'gauge-high']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Dashboard</span>
               </router-link>
-              </router-link>
-              <li
+              <router-link
+                to="/sms/admin"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                active-class="bg-white/15 text-white"
                 :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
               >
                 <font-awesome-icon :icon="['fas', 'user-shield']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Admin</span>
-              </li>
+              </router-link>
               <router-link
                 to="/sms/students"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
@@ -173,7 +174,7 @@
               >
                 <font-awesome-icon :icon="['fas', 'book']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Subject</span>
-              </li>
+              </router-link>
               <router-link
                 to="/sms/classroutine"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2"
