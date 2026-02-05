@@ -39,6 +39,21 @@ const router = createRouter({
           component: () => import('../views/sms/pages/TeacherPage.vue'),
         },
         {
+          path: 'teachers/details/:id',
+          name: 'sms-teacher-details',
+          component: () => import('../views/sms/pages/TeacherDetailsPage.vue'),
+        },
+        {
+          path: 'library/all-books',
+          name: 'sms-library-all-books',
+          component: () => import('../views/sms/pages/AllBooksPage.vue'),
+        },
+        {
+          path: 'library/add-new-book',
+          name: 'sms-library-add-new-book',
+          component: () => import('../views/sms/pages/AddNewBookPage.vue'),
+        },
+        {
           path: 'class',
           name: 'sms-class',
           component: () => import('../views/sms/pages/AllClassPage.vue'),
@@ -62,6 +77,31 @@ const router = createRouter({
           path: 'exam',
           name: 'sms-exam',
           component: () => import('../views/sms/pages/ExamPage.vue'),
+        },
+        {
+          path: 'account',
+          name: 'sms-account',
+          redirect: '/sms/account/fees-collection',
+        },
+        {
+          path: 'account/fees-collection',
+          name: 'sms-account-fees-collection',
+          component: () => import('../views/sms/pages/AccountPage.vue'),
+        },
+        {
+          path: 'account/create-student-payment',
+          name: 'sms-account-create-student-payment',
+          component: () => import('../views/sms/pages/CreateStudentPaymentPage.vue'),
+        },
+        {
+          path: 'account/all-expenses',
+          name: 'sms-account-all-expenses',
+          component: () => import('../views/sms/pages/AllExpensesPage.vue'),
+        },
+        {
+          path: 'account/add-new-student',
+          name: 'sms-account-add-new-student',
+          component: () => import('../views/sms/pages/AddNewStudentPage.vue'),
         },
         {
           path: 'exam-grades',

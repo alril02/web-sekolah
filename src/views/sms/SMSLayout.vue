@@ -147,12 +147,119 @@
                 <font-awesome-icon :icon="['fas', 'chalkboard-user']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Teachers</span>
               </router-link>
-              <li
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
-                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
-              >
-                <font-awesome-icon :icon="['fas', 'book-open']" class="text-xs" />
-                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Library</span>
+              <li>
+                <button
+                  type="button"
+                  class="flex w-full items-center rounded-lg px-3 py-2"
+                  :class="[
+                    isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                    isLibraryOpen ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                  ]"
+                  @click="toggleLibrary"
+                >
+                  <font-awesome-icon :icon="['fas', 'book-open']" class="text-xs" />
+                  <span :class="isDrawerCollapsed ? 'sr-only' : ''">Library</span>
+                  <font-awesome-icon
+                    v-if="!isDrawerCollapsed"
+                    :icon="isLibraryOpen ? ['fas', 'angle-down'] : ['fas', 'angle-right']"
+                    class="ml-auto text-[10px] text-white/50"
+                  />
+                </button>
+                <ul v-if="isLibraryOpen && !isDrawerCollapsed" class="mt-1 space-y-1 pl-8">
+                  <router-link
+                    to="/sms/library/all-books"
+                    class="flex items-center rounded-lg px-3 py-2 text-xs"
+                    :class="[
+                      isLinkActive('/sms/library/all-books')
+                        ? 'bg-white/15 text-white'
+                        : 'text-white/70 hover:bg-white/15',
+                    ]"
+                  >
+                    <font-awesome-icon :icon="['fas', 'book']" class="mr-2 text-[10px]" />
+                    All Books
+                  </router-link>
+                  <router-link
+                    to="/sms/library/add-new-book"
+                    class="flex items-center rounded-lg px-3 py-2 text-xs"
+                    :class="[
+                      isLinkActive('/sms/library/add-new-book')
+                        ? 'bg-white/15 text-white'
+                        : 'text-white/70 hover:bg-white/15',
+                    ]"
+                  >
+                    <font-awesome-icon :icon="['fas', 'book']" class="mr-2 text-[10px]" />
+                    Add New Book
+                  </router-link>
+                </ul>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="flex w-full items-center rounded-lg px-3 py-2"
+                  :class="[
+                    isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                    isAccountOpen ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                  ]"
+                  @click="toggleAccount"
+                >
+                  <font-awesome-icon :icon="['fas', 'wallet']" class="text-xs" />
+                  <span :class="isDrawerCollapsed ? 'sr-only' : ''">Account</span>
+                  <font-awesome-icon
+                    v-if="!isDrawerCollapsed"
+                    :icon="isAccountOpen ? ['fas', 'angle-down'] : ['fas', 'angle-right']"
+                    class="ml-auto text-[10px] text-white/50"
+                  />
+                </button>
+                <ul v-if="isAccountOpen && !isDrawerCollapsed" class="mt-1 space-y-1 pl-8">
+                  <router-link
+                    to="/sms/account/fees-collection"
+                    class="flex items-center rounded-lg px-3 py-2 text-xs"
+                    :class="[
+                      isLinkActive('/sms/account/fees-collection')
+                        ? 'bg-white/15 text-white'
+                        : 'text-white/70 hover:bg-white/15',
+                    ]"
+                  >
+                    <font-awesome-icon :icon="['fas', 'coins']" class="mr-2 text-[10px]" />
+                    Fees Collection
+                  </router-link>
+                  <router-link
+                    to="/sms/account/create-student-payment"
+                    class="flex items-center rounded-lg px-3 py-2 text-xs"
+                    :class="[
+                      isLinkActive('/sms/account/create-student-payment')
+                        ? 'bg-white/15 text-white'
+                        : 'text-white/70 hover:bg-white/15',
+                    ]"
+                  >
+                    <font-awesome-icon :icon="['fas', 'coins']" class="mr-2 text-[10px]" />
+                    Creat Student Payment
+                  </router-link>
+                  <router-link
+                    to="/sms/account/all-expenses"
+                    class="flex items-center rounded-lg px-3 py-2 text-xs"
+                    :class="[
+                      isLinkActive('/sms/account/all-expenses')
+                        ? 'bg-white/15 text-white'
+                        : 'text-white/70 hover:bg-white/15',
+                    ]"
+                  >
+                    <font-awesome-icon :icon="['fas', 'coins']" class="mr-2 text-[10px]" />
+                    All Expenses
+                  </router-link>
+                  <router-link
+                    to="/sms/account/add-new-student"
+                    class="flex items-center rounded-lg px-3 py-2 text-xs"
+                    :class="[
+                      isLinkActive('/sms/account/add-new-student')
+                        ? 'bg-white/15 text-white'
+                        : 'text-white/70 hover:bg-white/15',
+                    ]"
+                  >
+                    <font-awesome-icon :icon="['fas', 'coins']" class="mr-2 text-[10px]" />
+                    Add Expenses
+                  </router-link>
+                </ul>
               </li>
               <router-link
                 to="/sms/class"
@@ -267,13 +374,27 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const isDrawerCollapsed = ref(false)
 const route = useRoute()
+const isAccountOpen = ref(false)
+const isLibraryOpen = ref(false)
 
-const isLinkActive = (path) => route.path === path
+const isLinkActive = (path) => {
+  if (isAccountOpen.value && !path.startsWith('/sms/account')) return false
+  if (isLibraryOpen.value && !path.startsWith('/sms/library')) return false
+  return route.path === path
+}
+
+const toggleAccount = () => {
+  isAccountOpen.value = !isAccountOpen.value
+}
+
+const toggleLibrary = () => {
+  isLibraryOpen.value = !isLibraryOpen.value
+}
 
 const toggleDrawer = () => {
   isDrawerCollapsed.value = !isDrawerCollapsed.value
@@ -289,6 +410,14 @@ onMounted(() => {
   isDrawerCollapsed.value = mediaQuery.matches
   mediaQuery.addEventListener('change', handleResize)
 })
+
+watch(
+  () => route.path,
+  (path) => {
+    isAccountOpen.value = path.startsWith('/sms/account')
+    isLibraryOpen.value = path.startsWith('/sms/library')
+  },
+)
 
 onBeforeUnmount(() => {
   if (!mediaQuery) return

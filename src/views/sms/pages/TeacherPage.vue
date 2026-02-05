@@ -161,14 +161,13 @@
       </div>
     </section>
 
-    <TeacherDetailComponent v-model="isDetailOpen" :teacher="selectedTeacher" />
     <AddNewTeacherComponent v-model="isAddOpen" />
   </div>
 </template>
 
 <script setup>
 import { computed, ref, watch } from 'vue'
-import TeacherDetailComponent from '../components/TeacherDetailComponent.vue'
+import { useRouter } from 'vue-router'
 import AddNewTeacherComponent from '../components/AddNewTeacherComponent.vue'
 
 const perPageOptions = [5, 10, 20]
@@ -177,13 +176,11 @@ const currentPage = ref(1)
 const idQuery = ref('')
 const classQuery = ref('')
 const subjectQuery = ref('')
-const isDetailOpen = ref(false)
-const selectedTeacher = ref(null)
 const isAddOpen = ref(false)
+const router = useRouter()
 
 const openDetail = (teacher) => {
-  selectedTeacher.value = teacher
-  isDetailOpen.value = true
+  router.push(`/sms/teachers/details/${teacher.id}`)
 }
 
 const teachers = [
