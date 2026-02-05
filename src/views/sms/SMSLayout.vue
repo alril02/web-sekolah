@@ -265,6 +265,17 @@
                 </ul>
               </li>
               <router-link
+                to="/sms/class"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
+                :class="[
+                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
+                  isLinkActive('/sms/class') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
+                ]"
+              >
+                <font-awesome-icon :icon="['fas', 'school']" class="text-xs" />
+                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Class</span>
+              </router-link>
+              <router-link
                 to="/sms/subject"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2"
                 :class="[
@@ -374,7 +385,10 @@ const route = useRoute()
 const isAccountOpen = ref(false)
 const isLibraryOpen = ref(false)
 
-const isLinkActive = (path) => route.path === path
+const isLinkActive = (path) => {
+  if (path === '/sms') return route.path === path
+  return route.path.startsWith(path)
+}
 
 const toggleDrawer = () => {
   isDrawerCollapsed.value = !isDrawerCollapsed.value
