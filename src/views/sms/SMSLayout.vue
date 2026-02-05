@@ -155,7 +155,7 @@
               >
                 <font-awesome-icon :icon="['fas', 'book']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Subject</span>
-              </router-link>
+              </li>
               <router-link
                 to="/sms/class-routine"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
