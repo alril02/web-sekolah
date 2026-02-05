@@ -89,14 +89,14 @@
             <ul class="mt-3 space-y-1">
               <router-link
                 to="/sms"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
-                :class="[
-                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
-                  isLinkActive('/sms') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
-                ]"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                active-class="bg-white/15 text-white"
+                exact-active-class="bg-white/15 text-white"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
               >
                 <font-awesome-icon :icon="['fas', 'gauge-high']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Dashboard</span>
+              </router-link>
               </router-link>
               <li
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
@@ -107,11 +107,9 @@
               </li>
               <router-link
                 to="/sms/students"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
-                :class="[
-                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
-                  isLinkActive('/sms/students') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
-                ]"
+                class="flex cursor-pointer items-center rounded-lg px-3 py-2 text-white/70 hover:bg-white/15"
+                active-class="bg-white/15 text-white"
+                :class="isDrawerCollapsed ? 'justify-center' : 'gap-3'"
               >
                 <font-awesome-icon :icon="['fas', 'user-graduate']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Student</span>
