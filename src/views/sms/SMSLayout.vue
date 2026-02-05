@@ -66,9 +66,13 @@
             <div class="text-lg font-bold tracking-wide text-white" :class="isDrawerCollapsed ? 'sr-only' : ''">
               Akkhor
             </div>
-            <p class="text-xs text-white/60" :class="isDrawerCollapsed ? 'sr-only' : ''">
-              School Management
-            </p>
+            <router-link
+              to="/sms/profile"
+              class="text-xs text-white/60 hover:text-white"
+              :class="isDrawerCollapsed ? 'sr-only' : ''"
+            >
+              Profile
+            </router-link>
             <div
               v-if="isDrawerCollapsed"
               class="flex h-10 w-10 items-center justify-center rounded-lg bg-white/15 text-white"
@@ -155,17 +159,6 @@
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Library</span>
               </li>
               <router-link
-                to="/sms/class"
-                class="flex cursor-pointer items-center rounded-lg px-3 py-2"
-                :class="[
-                  isDrawerCollapsed ? 'justify-center' : 'gap-3',
-                  isLinkActive('/sms/class') ? 'bg-white/15 text-white' : 'text-white/70 hover:bg-white/15',
-                ]"
-              >
-                <font-awesome-icon :icon="['fas', 'school']" class="text-xs" />
-                <span :class="isDrawerCollapsed ? 'sr-only' : ''">Class</span>
-              </router-link>
-              <router-link
                 to="/sms/subject"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2"
                 :class="[
@@ -175,7 +168,7 @@
               >
                 <font-awesome-icon :icon="['fas', 'book']" class="text-xs" />
                 <span :class="isDrawerCollapsed ? 'sr-only' : ''">Subject</span>
-              </li>
+              </router-link>
               <router-link
                 to="/sms/classroutine"
                 class="flex cursor-pointer items-center rounded-lg px-3 py-2"
@@ -273,7 +266,10 @@ import { useRoute } from 'vue-router'
 const isDrawerCollapsed = ref(false)
 const route = useRoute()
 
-const isLinkActive = (path) => route.path === path
+const isLinkActive = (path) => {
+  if (path === '/sms') return route.path === path
+  return route.path.startsWith(path)
+}
 
 const toggleDrawer = () => {
   isDrawerCollapsed.value = !isDrawerCollapsed.value

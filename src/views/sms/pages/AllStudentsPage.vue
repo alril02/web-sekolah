@@ -12,6 +12,12 @@
           <h2 class="text-lg font-semibold text-slate-800">All Students</h2>
           <p class="text-xs text-slate-400">Manage and review students information</p>
         </div>
+        <button
+          class="h-9 cursor-pointer rounded-full bg-amber-400 px-4 text-xs font-semibold uppercase tracking-wide text-white"
+          @click="isAddOpen = true"
+        >
+          + Add Student
+        </button>
         <div class="flex flex-wrap items-center gap-2">
           <input
             v-model="rollQuery"
@@ -86,7 +92,14 @@
                   <img :src="student.photo" :alt="student.name" class="h-full w-full object-cover" />
                 </div>
               </td>
-              <td class="px-4 py-3 font-medium text-slate-700">{{ student.name }}</td>
+              <td class="px-4 py-3 font-medium text-slate-700">
+                <router-link
+                  :to="`/sms/student-details/${student.roll}`"
+                  class="text-slate-700 hover:text-[#1e3a8a]"
+                >
+                  {{ student.name }}
+                </router-link>
+              </td>
               <td class="px-4 py-3">{{ student.gender }}</td>
               <td class="px-4 py-3">{{ student.parent }}</td>
               <td class="px-4 py-3">{{ student.className }}</td>
@@ -97,6 +110,12 @@
               <td class="px-4 py-3">{{ student.email }}</td>
               <td class="px-4 py-3">
                 <div class="flex items-center justify-center gap-2">
+                  <router-link
+                    :to="`/sms/student-details/${student.roll}`"
+                    class="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:text-[#1e3a8a]"
+                  >
+                    👁
+                  </router-link>
                   <button class="h-7 w-7 cursor-pointer rounded-full bg-emerald-50 text-emerald-600">✎</button>
                   <button class="h-7 w-7 cursor-pointer rounded-full bg-rose-50 text-rose-600">🗑</button>
                 </div>
@@ -147,11 +166,146 @@
         </div>
       </div>
     </section>
+
+    <teleport to="body">
+      <div v-if="isAddOpen" class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6">
+        <div class="absolute inset-0 bg-slate-900/40" @click="isAddOpen = false"></div>
+        <div class="relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-white shadow-lg">
+          <div class="flex items-center justify-between border-b border-slate-100 px-6 py-4">
+            <h3 class="text-sm font-semibold text-slate-800">Add Student Form</h3>
+            <div class="flex items-center gap-2 text-xs">
+              <button class="text-emerald-500">✓</button>
+              <button class="text-rose-500" @click="isAddOpen = false">✕</button>
+            </div>
+          </div>
+
+          <div class="sms-scroll flex-1 overflow-y-auto px-6 py-5 text-xs text-slate-600">
+            <div class="mb-5">
+              <h4 class="text-xs font-semibold text-slate-800">Student Information</h4>
+              <div class="mt-2 h-0.5 w-12 bg-slate-900"></div>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">First Name</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Last Name</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Class</label>
+                <select class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3 text-slate-500">
+                  <option>Please Select Class</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Section</label>
+                <select class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3 text-slate-500">
+                  <option>Please Select Class</option>
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Gender</label>
+                <select class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3 text-slate-500">
+                  <option>Please Select Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Date Of Birth</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="date" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Roll</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Admission No</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Religion</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">E-mail</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="email" />
+              </div>
+              <div class="xl:col-span-2">
+                <label class="text-[11px] font-semibold text-slate-500">Upload Student Photo (150px x 150px)</label>
+                <input class="mt-2 w-full text-[11px]" type="file" />
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <h4 class="text-xs font-semibold text-slate-800">Parents Information</h4>
+              <div class="mt-2 h-0.5 w-12 bg-slate-900"></div>
+            </div>
+
+            <div class="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Father Name</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Mother Name</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Father Occupation</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Mother Occupation</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Phone Number</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Nationality</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Present Address</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div>
+                <label class="text-[11px] font-semibold text-slate-500">Permanent Address</label>
+                <input class="mt-2 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3" type="text" />
+              </div>
+              <div class="xl:col-span-2">
+                <label class="text-[11px] font-semibold text-slate-500">Upload Parents Photo (150px x 150px)</label>
+                <input class="mt-2 w-full text-[11px]" type="file" />
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 border-t border-slate-100 px-6 py-4">
+            <button class="h-9 rounded bg-amber-400 px-6 text-xs font-semibold text-white">Save</button>
+            <button class="h-9 rounded bg-[#0b2b5b] px-6 text-xs font-semibold text-white" @click="isAddOpen = false">
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+    </teleport>
   </div>
 </template>
 
 <script setup>
 import { computed, ref, watch } from 'vue'
+import { students as studentsData } from '../data/students'
 
 const perPageOptions = [5, 10, 20]
 const perPage = ref(10)
@@ -160,204 +314,9 @@ const rollQuery = ref('')
 const nameQuery = ref('')
 const classQuery = ref('')
 const sectionQuery = ref('')
+const isAddOpen = ref(false)
 
-const students = [
-  {
-    roll: '2901',
-    name: 'Ricki Rozario',
-    gender: 'Female',
-    parent: 'David Smith',
-    className: '1',
-    section: 'A',
-    address: 'TA-110, North Sydney',
-    dob: '10/03/2010',
-    mobile: '+ 8812 00 5098',
-    email: 'rrozario@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2902',
-    name: 'Kazi Fahim',
-    gender: 'Male',
-    parent: 'Mike Hussy',
-    className: '2',
-    section: 'B',
-    address: '59, street, North Sydney',
-    dob: '10/03/2010',
-    mobile: '+ 8812 00 5098',
-    email: 'kfahim@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2903',
-    name: 'Michi Rozario',
-    gender: 'Female',
-    parent: 'David Smith',
-    className: '1',
-    section: 'C',
-    address: '90 Street, Heavy, Resde',
-    dob: '10/03/2010',
-    mobile: '+ 8812 00 5098',
-    email: 'mrozario@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2904',
-    name: 'Nchi Rozario',
-    gender: 'Female',
-    parent: 'David Smith',
-    className: '5',
-    section: 'D',
-    address: 'TA-110, North Sydney',
-    dob: '10/03/2010',
-    mobile: '+ 8812 00 5098',
-    email: 'nrozario@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2905',
-    name: 'Dchi Rozario',
-    gender: 'Female',
-    parent: 'David Smith',
-    className: '5',
-    section: 'D',
-    address: 'TA-110, North Sydney',
-    dob: '10/03/2010',
-    mobile: '+ 8812 00 5098',
-    email: 'drozario@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2906',
-    name: 'Nisa Putri',
-    gender: 'Female',
-    parent: 'Ayu Lestari',
-    className: '3',
-    section: 'A',
-    address: 'Jl. Melati 10, North Sydney',
-    dob: '12/05/2010',
-    mobile: '+ 8812 00 5011',
-    email: 'nputri@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2907',
-    name: 'Arif Pratama',
-    gender: 'Male',
-    parent: 'Budi Pratama',
-    className: '3',
-    section: 'B',
-    address: 'TA-112, North Sydney',
-    dob: '08/07/2010',
-    mobile: '+ 8812 00 5012',
-    email: 'apratama@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2908',
-    name: 'Salsa Maya',
-    gender: 'Female',
-    parent: 'Dewi Maya',
-    className: '4',
-    section: 'C',
-    address: '59, street, North Sydney',
-    dob: '20/01/2010',
-    mobile: '+ 8812 00 5013',
-    email: 'smaya@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2909',
-    name: 'Kevin Malik',
-    gender: 'Male',
-    parent: 'Rina Malik',
-    className: '4',
-    section: 'D',
-    address: '90 Street, Heavy, Resde',
-    dob: '30/09/2010',
-    mobile: '+ 8812 00 5014',
-    email: 'kmalik@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2910',
-    name: 'Alya Ramadhan',
-    gender: 'Female',
-    parent: 'Sari Ramadhan',
-    className: '2',
-    section: 'A',
-    address: 'TA-118, North Sydney',
-    dob: '16/11/2010',
-    mobile: '+ 8812 00 5015',
-    email: 'aramadhan@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2911',
-    name: 'Dio Saputra',
-    gender: 'Male',
-    parent: 'Hendra Saputra',
-    className: '1',
-    section: 'B',
-    address: 'TA-120, North Sydney',
-    dob: '01/12/2010',
-    mobile: '+ 8812 00 5016',
-    email: 'dsaputra@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2912',
-    name: 'Melisa Hart',
-    gender: 'Female',
-    parent: 'Hartono',
-    className: '5',
-    section: 'A',
-    address: 'TA-110, North Sydney',
-    dob: '04/02/2010',
-    mobile: '+ 8812 00 5017',
-    email: 'mhart@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2913',
-    name: 'Raka Wijaya',
-    gender: 'Male',
-    parent: 'Rudi Wijaya',
-    className: '5',
-    section: 'B',
-    address: '59, street, North Sydney',
-    dob: '21/03/2010',
-    mobile: '+ 8812 00 5018',
-    email: 'rwijaya@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2914',
-    name: 'Nadia Zahra',
-    gender: 'Female',
-    parent: 'Zainal Zahra',
-    className: '2',
-    section: 'C',
-    address: 'TA-115, North Sydney',
-    dob: '17/06/2010',
-    mobile: '+ 8812 00 5019',
-    email: 'nzahra@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=60',
-  },
-  {
-    roll: '2915',
-    name: 'Yoga Prasetyo',
-    gender: 'Male',
-    parent: 'Sigit Prasetyo',
-    className: '3',
-    section: 'D',
-    address: '90 Street, Heavy, Resde',
-    dob: '29/08/2010',
-    mobile: '+ 8812 00 5020',
-    email: 'yprasetyo@gmail.com',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=60',
-  },
-]
+const students = [...studentsData]
 
 const filteredStudents = computed(() => {
   const rollValue = rollQuery.value.trim().toLowerCase()

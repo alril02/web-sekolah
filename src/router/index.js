@@ -29,6 +29,11 @@ const router = createRouter({
           component: () => import('../views/sms/pages/AllStudentsPage.vue'),
         },
         {
+          path: 'student-details/:roll',
+          name: 'sms-student-details',
+          component: () => import('../views/sms/pages/StudentDetails.vue'),
+        },
+        {
           path: 'parents',
           name: 'sms-all-parents',
           component: () => import('../views/sms/pages/AllParentsPage.vue'),
@@ -42,6 +47,16 @@ const router = createRouter({
           path: 'class',
           name: 'sms-class',
           component: () => import('../views/sms/pages/AllClassPage.vue'),
+        },
+        {
+          path: 'profile',
+          name: 'sms-profile',
+          component: () => import('../views/sms/pages/ProfilePage.vue'),
+        },
+        {
+          path: 'account',
+          name: 'sms-account',
+          component: () => import('../views/sms/pages/AccountPage.vue'),
         },
         {
           path: 'subject',
